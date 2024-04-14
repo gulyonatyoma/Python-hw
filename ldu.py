@@ -1,6 +1,8 @@
 import numpy as np
 
 def ldu(a: np.ndarray) -> tuple[np.ndarray]:
+    if a.shape[0] != a.shape[1]:
+        raise ValueError("matrix must be square")
     n = a.shape[0]
     l = np.zeros((n, n))
     d = np.zeros((n, n))
