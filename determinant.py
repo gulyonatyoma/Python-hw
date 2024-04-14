@@ -48,7 +48,7 @@ def numpy_determinant(a: np.ndarray):
 
 gauss_det, string_det, linal_det, x = [], [], [], []
 for i in range(20):
-    a = np.random.randint(-1000, 1000, (i, i))
+    a = np.random.randint(-500, 500, (i, i))
     moment0 = time()
     gauss_determinant(a)
     moment1 = time()
