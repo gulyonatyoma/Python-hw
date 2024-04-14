@@ -11,7 +11,6 @@ Z = np.sin(R) / R
 # Plot the surface
 fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
 surface = ax.plot_surface(X, Y, Z, vmin=Z.min() * 2, cmap=cm.viridis)
-ax.set_zlim(-0.4, 1)
 
 fig.colorbar(surface)
 
