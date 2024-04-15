@@ -27,19 +27,23 @@ def gauss_determinant(a: np.ndarray):
 def string_determinant(a: np.ndarray):
     if a.shape[0] != a.shape[1]:
         raise ValueError("matrix must be square")
-    n = a.shape[0]
-    perms = list(range(n))
-    combs = combinations(perms, n)
-    ans = 0.0
-    for x in combs:
-        cur = 1.0
-        for k in range(n):
-            j = x[k]
-            cur *= a[k, j]
-            if (k + j) % 2 != 0:
-                cur *= -1
-        ans += cur
-    return ans 
+    
+    size = a.shape[0]
+    if size == 1:
+        return a[0, 0]
+
+    ans = 0
+    for j in range(size):
+        bit = np.full((size, size), True)
+        bit[0] = False
+        bit = bit.T
+        bit[j] = False 
+        bit = bit.T
+
+        ans += (-1) ** j * a[0, j] * string_det(a[bit].reshape(size - 1, size - 1))
+    
+    return ans
+
 
 def numpy_determinant(a: np.ndarray):
     if a.shape[0] != a.shape[1]:
@@ -48,7 +52,7 @@ def numpy_determinant(a: np.ndarray):
 
 gauss_det, string_det, linal_det, x = [], [], [], []
 for i in range(20):
-    a = np.random.randint(-500, 500, (i, i))
+    a = np.random.randint(-100, 100, (i, i))
     moment0 = time()
     gauss_determinant(a)
     moment1 = time()
