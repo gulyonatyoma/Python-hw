@@ -33,9 +33,4 @@ def spiral_filling(r: int, c: int) -> np.ndarray:
             ret[i][left] = ind 
             ind += 1
         left += 1
-    return ret 
-
-print(spiral_filling(2, 5))
-print(spiral_filling(1, 5))
-print(spiral_filling(3, 3))
-print(spiral_filling(3, 7))
+    return ret
