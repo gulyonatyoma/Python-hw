@@ -2,7 +2,9 @@ import numpy as np
 
 def spiral_filling(r: int, c: int) -> np.ndarray:
     ret = np.zeros((r, c))
-    
+
+    if r == 0 or c == 0:
+        raise ValueError("One dimension is equal to zero")    
     top = 0
     bottom = r - 1
     left = 0
